@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #05060b;
+  --bg-2: #0a1020;
+  --bg-3: #101830;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-bright: rgba(86, 216, 255, 0.42);
+  --ink: #f4f5fa;
+  --muted: #9ca6ba;
+  --electric: #4285ff;
+  --cyan: #56d8ff;
+  --yellow: #fecc1b;
+  --amber: #ffd477;
+  --violet: #9b7cff;
+  --red: #ff5e5e;
+  --font-pixel: var(--font-silkscreen), var(--font-jb), monospace;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jb), ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-line: var(--line);
+  --color-line-bright: var(--line-bright);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-electric: var(--electric);
+  --color-cyan: var(--cyan);
+  --color-yellow: var(--yellow);
+  --color-amber: var(--amber);
+  --color-violet: var(--violet);
+  --color-red: var(--red);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+.pixel-title {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.04em;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.glass-panel {
+  background: rgba(10, 15, 28, 0.62);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-pill {
+  background: rgba(12, 19, 38, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(86, 216, 255, 0.25);
+}
+
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.16) 3px
+  );
+  opacity: 0.45;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor {
+  animation: cursor-blink 1.05s steps(2, start) infinite;
+}
+
+::selection {
+  background: rgba(86, 216, 255, 0.28);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 1px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-cursor {
+    animation: none;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  canvas {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    color: #111111;
+  }
+}
